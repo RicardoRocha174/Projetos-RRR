@@ -17,13 +17,13 @@ const getAddress = () => {
     return response.json();
         })
     .then(data =>{
-          fillfields(data);
+          updatefieldsAddress(data);
     })
     .catch(e => console.log("Cep não encontrado!"))
 
 }
 
-function fillfields(data){
+function updatefieldsAddress(data){
     
     $('#rua').val(data.logradouro) 
     $('#bairro').val(data.bairro) 
