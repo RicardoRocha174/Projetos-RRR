@@ -2,6 +2,7 @@
 
 const openModal = () => document.getElementById('modal')
     .classList.add('active')
+    $('#celular').mask('(00) 00000-0000');
 
 const closeModal = () => {
     clearFields()
