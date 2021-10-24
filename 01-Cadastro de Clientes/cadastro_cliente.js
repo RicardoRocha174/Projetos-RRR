@@ -161,7 +161,7 @@ const editDelete = (event) => {
 
 updateTable()
 
-// Eventos
+// Events
 document.getElementById('cadastrarCliente')
     .addEventListener('click', openModal)
 
