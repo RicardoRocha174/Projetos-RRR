@@ -17,13 +17,14 @@ const getAddress = () => {
     return response.json();
         })
     .then(data =>{
-          var valor = data 
           fillfields(data);
     })
+    .catch(e => console.log("Cep não encontrado!"))
 
 }
 
 function fillfields(data){
+    
     $('#rua').val(data.logradouro) 
     $('#bairro').val(data.bairro) 
     $('#cidade').val(data.localidade) 
