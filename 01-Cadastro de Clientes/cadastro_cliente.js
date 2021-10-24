@@ -10,6 +10,24 @@ const closeModal = () => {
 }
 
 
+const getaddress = () => {
+    var urlEnvio = "viacep.com.br/ws/37418000/json/"
+    const url = `https://viacep.com.br/ws/13215081/json/`;
+    
+    fetch(url).then(response =>{
+    return response.json();
+        })
+    .then(data =>{
+          var valor = data 
+          atribuirCampos(data);
+    })
+
+}
+
+function atribuirCampos(data){
+    
+}
+
 const getLocalStorage = () => JSON.parse(localStorage.getItem('db_client')) ?? []
 const setLocalStorage = (dbClient) => localStorage.setItem("db_client", JSON.stringify(dbClient))
 
