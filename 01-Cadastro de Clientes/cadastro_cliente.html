@@ -18,7 +18,7 @@
     <script src="jquery.maskedinput-1.2.2.js" type="text/javascript"></script>
     <script src="jquery.maskedinput-1.2.2.min.js" defer type="text/javascript"></script>
     <script src="cadastro_cliente.js" defer></script>
-    <title>CRUD</title>
+    <title>Cadastro de Clientes</title>
 </head>
 
 <body>
@@ -33,7 +33,11 @@
                     <th>Nome</th>
                     <th>E-mail</th>
                     <th>Celular</th>
+                    <th>CEP</th>
+                    <th>Rua</th>
+                    <th>Bairro</th>
                     <th>Cidade</th>
+                    <th>Estado</th>
                     <th>Ação</th>
                 </tr>
             </thead>
@@ -48,11 +52,14 @@
                     <span class="modal-close" id="modalClose">&#10006;</span>
                 </header>
                 <form id="form" class="modal-form">
-                    <input type="text" id="nome" data-index="new" class="modal-field" placeholder="Nome do Cliente"
-                        required>
+                    <input type="text" id="nome" data-index="new" class="modal-field" placeholder="Nome do Cliente" required>
                     <input type="email" id="email"    class="modal-field" placeholder="e-mail do Cliente" required>
-                    <input type="text"  id="celular"  class="modal-field" placeholder="Celular do Cliente"  required>
-                    <input type="text"  id="cidade"   class="modal-field" placeholder="Cidade do Cliente" required>
+                    <input type="text"  id="celular"  class="modal-field" placeholder="Celular do Cliente"required>
+                    <input type="text"  id="cep"      class="modal-field" placeholder="CEP do Cliente"    required onchange="getAddress()" > 
+                    <input type="text"  id="rua"      class="modal-field" placeholder="RUA do Cliente"    required>
+                    <input type="text"  id="bairro"   class="modal-field" placeholder="Bairro do Cliente"    required>
+                    <input type="text"  id="cidade"   class="modal-field" placeholder="Cidade do Cliente"    required>
+                    <input type="text"  id="estado"   class="modal-field" placeholder="Estado do Cliente"    required>
                 </form>
                 <footer class="modal-footer">
                     <button id="salvar" class="button green">Salvar</button>

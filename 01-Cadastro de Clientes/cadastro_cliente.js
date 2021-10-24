@@ -1,4 +1,3 @@
-'use strict'
 
 const openModal = () => document.getElementById('modal')
     .classList.add('active')
@@ -10,22 +9,25 @@ const closeModal = () => {
 }
 
 
-const getaddress = () => {
-    var urlEnvio = "viacep.com.br/ws/37418000/json/"
-    const url = `https://viacep.com.br/ws/13215081/json/`;
+const getAddress = () => {
+    var cep =  $('#cep').val()
+    const url = "https://viacep.com.br/ws/"+cep+"/json/";
     
     fetch(url).then(response =>{
     return response.json();
         })
     .then(data =>{
           var valor = data 
-          atribuirCampos(data);
+          fillfields(data);
     })
 
 }
 
-function atribuirCampos(data){
-    
+function fillfields(data){
+    $('#rua').val(data.logradouro) 
+    $('#bairro').val(data.bairro) 
+    $('#cidade').val(data.localidade) 
+    $('#estado').val(data.uf) 
 }
 
 const getLocalStorage = () => JSON.parse(localStorage.getItem('db_client')) ?? []
@@ -56,7 +58,6 @@ const isValidFields = () => {
     return document.getElementById('form').reportValidity()
 }
 
-//Interação com o layout
 
 const clearFields = () => {
     const fields = document.querySelectorAll('.modal-field')
@@ -71,7 +72,12 @@ const saveClient = () => {
             nome: document.getElementById('nome').value,
             email: document.getElementById('email').value,
             celular: document.getElementById('celular').value,
-            cidade: document.getElementById('cidade').value
+            cep: document.getElementById('cep').value,
+            rua: document.getElementById('rua').value,
+            bairro: document.getElementById('bairro').value,
+            cidade: document.getElementById('cidade').value,
+            estado: document.getElementById('estado').value,
+            
         }
         const index = document.getElementById('nome').dataset.index
         if (index == 'new') {
@@ -92,7 +98,11 @@ const createRow = (client, index) => {
         <td>${client.nome}</td>
         <td>${client.email}</td>
         <td>${client.celular}</td>
+        <td>${client.cep}</td>
+        <td>${client.rua}</td>
+        <td>${client.bairro}</td>
         <td>${client.cidade}</td>
+        <td>${client.estado}</td>
         <td>
             <button type="button" class="button green" id="edit-${index}">Editar</button>
             <button type="button" class="button red" id="delete-${index}" >Excluir</button>
@@ -116,7 +126,11 @@ const fillFields = (client) => {
     document.getElementById('nome').value = client.nome
     document.getElementById('email').value = client.email
     document.getElementById('celular').value = client.celular
+    document.getElementById('cep').value = client.cep
+    document.getElementById('rua').value = client.rua
+    document.getElementById('bairro').value = client.bairro
     document.getElementById('cidade').value = client.cidade
+    document.getElementById('estado').value = client.estado
     document.getElementById('nome').dataset.index = client.index
 }
 
